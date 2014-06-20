@@ -1,0 +1,53 @@
+\chapter{Development process}
+\label{ch:development-process}
+
+\section{Documentation}
+\label{sec:documentation}
+
+There is a few occasions where documentation is needed: architecture design, deployment process, produced source code, complex algorithms...
+
+\subsection{Architecture design}
+\label{sec:architecture-design}
+
+Architectural design needs a lot of discussion before converging.  So the first documentation on that will be contained in the mailing list.  However, this is not a resumed and structured information.  Partners will use at least 2 other medias to improve documentation.
+
+First of all, architecture design imply graphics (for example, UML component diagrams or UML package diagrams).  NME partner is already providing a server where we can collaboratively work on graphics using DrawMagic, a diagram software solution.  It allows us to use a lot of different standardized diagram notations and annotate them; it works as a versionning source repository: everybody can push modifications on it and modifications are merged.
+
+On the other hand, structured and textual documentation about architecture is written on a wiki.  CNR partner already deployed an XWiki instance partly for this goal (and for documenting everything about the LearnPAd project in general).
+
+\subsection{Deployment process}
+\label{sec:deployment-process}
+
+The deployment of the developed services must be documented on the wiki (already deployed, see Section~\ref{sec:architecture-design}).  However, the deployment will be automatized (as far as possible) for the continuous integration, see Section~\ref{sec:continuous-integration} for more informations.
+
+\subsection{Source code}
+\label{sec:source-code}
+
+It exists a lot of supporting tools to document code (Doxygen, JavaDoc, PythonDoc, etc.).  No matter what tool is used, each code should be documented at least at the file level: what the script is for? what the class is for? etc.
+
+\subsection{Complex algorithms}
+\label{sec:complex-algorithms}
+
+Some specific parts of source code needs a specific documentation.  Complex algorithms for example, needs a detailed and structured documentation.  Basic source code documentation can be done (see Section~\ref{sec:source-code}) but in these cases, documentation on the wiki or publication of a paper may happen.
+
+\section{Source management}
+\label{sec:source-management}
+
+As already said, all source code will be store in a single repository, using a distributed version control system like git, mercurial, Subversion, etc.  To ease the collaboration, each service will takes place in one subdirectory of this main repository.  The source will be published on a public server, and also accessible with an web front-end to ease some of the manipulations (like GitHub, BitBucket, etc.).
+
+\section{Building}
+\label{sec:building}
+
+As seen in the Figure~\ref{fig:development-workflow}, a continuous integration will support the development of the platform.  That means that every service should be buildable automatically.  As seen in Source Management (see Section~\ref{sec:source-management}), each service will be a folder in the source repository.  This should allow more freedom in the management of development activities (tools used, subdirectories, etc.).  To ease the global build, each service must provide a file to automatically build it (for example, each folder will contain a \texttt{build.sh} file).  At the root of the repository, a global builder will parse all of the services to build them.  If specific deployment procedures must be done, they should also appear in this build process.
+
+\section{Testing}
+\label{sec:testing}
+
+Testing is an important part for the continuous integration.  Unit tests should be developed as the service level; they will help to check the builds and avoid regressions as much as possible.  Integration tests should allow the continuous integration that everything is right during a standard deployment with the last versions of all the services.
+
+For unit tests, each service must provide a way to run the tests (for example, by giving a \texttt{test.sh} file or by allowing a \texttt{test} functionality to the \texttt{build.sh}).  Integration and functional tests are higher levels and should be defined in collaboration.
+
+\section{Bug tracking}
+\label{sec:bug-tracking}
+
+Each bug will be tracked with a centralized tool like JIRA, Mantis, GitHub, etc.  The procedure is to report bug each time you encounter problem using services of other partners.  Each partner can also use the tool for reporting its own bugs.  The bug tracking system must be able to notify users by email.

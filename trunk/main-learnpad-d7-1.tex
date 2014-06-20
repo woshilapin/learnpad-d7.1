@@ -1,0 +1,148 @@
+%%% LearnPAd Document template / example using learnpad.cls class for styling
+%%% 20140401, 
+%%% Guglielmo De Angelis <guglielmo.deangelis@isti.cnr.it>
+%%% Andrea Polini <andrea.polini@unicam.it>
+
+\documentclass{learnpad}
+% \usepackage{labsedc}
+\usepackage[showtodos,showcomments]{labsedc}
+\let\cleardoublepage\clearpage
+\usepackage{extracommands}
+
+%%% ------------------------------------------------------
+%%% ---------------- The Title
+%%% ------------------------------------------------------
+\title{Integration plan} 
+
+%%% ------------------------------------------------------
+%%% ---------------- The Sub-Title
+%%% ------------------------------------------------------
+% \subtitle{} 
+
+%%% ------------------------------------------------------
+%%% ---------------- The Name of the Deliverable
+%%% ------------------------------------------------------
+\deliverableno{D7.1}
+
+%%% ------------------------------------------------------
+%%% ---------------- The Authors
+%%% ------------------------------------------------------
+\authors{Amira Ben Hamida (LIN), Vedran Hrgovcic (BOC), Fabio Mancinelli (XWIKI), Darius Silingas (NME), Jean Simard (XWIKI)}
+
+%%% ------------------------------------------------------
+%%% ---------------- The Editors
+%%% ------------------------------------------------------
+\editors{Vedran Hrgovcic (BOC)}
+
+%%% ------------------------------------------------------
+%%% ---------------- The reviewers
+%%% ------------------------------------------------------
+\reviewers{Amira Ben Hamida (LIN)} 
+
+%%% ------------------------------------------------------
+%%% ---------------- The date
+%%% ------------------------------------------------------
+\date{\today}
+
+%%% ------------------------------------------------------
+%%% ---------------- deliverable info
+%%% ---------------- choose among : Report / Other / Prototype
+%%% ------------------------------------------------------
+\naturedeliverable{Report}%
+%%% ------------------------------------------------------
+%%% ---------------- deliverable dissemination levele
+%%% ---------------- choose among the two options below:
+\disseminationlevelpublic
+% \disseminationlevelconfidential
+%%% ------------------------------------------------------
+\version{0.2}%
+\contractualdeliverydate{31 July 2014}%
+\actualdeliverydate{31 July 2014}%
+\contributingwp{WP7}%
+
+%%% ------------------------------------------------------
+%%% ---------------- abstract
+%%% ------------------------------------------------------
+\abstract{\dots~\dots\TODO{TBD}}
+
+%%% ------------------------------------------------------
+%%% ---------------- Keywords
+%%% ------------------------------------------------------
+\keywords{\dots~\dots\TODO{TBD}}
+
+%%% ------------------------------------------------------
+%%% ---------------- review table
+%%% ------------------------------------------------------
+\reviewoutline{5 Jun 2014}{0.2}{N.A.}{N.A.}
+\reviewdraft{text1}{text2}{text3}{text4}
+\reviewqa{text1}{text2}{text3}{text4}
+\reviewptc{text1}{text2}{text3}{text4}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+
+%% ------------------------------------------------------
+%% ---------------- document history
+%% ------------------------------------------------------
+\begin{history}
+  \historyitem{0.1}{First ToC}{Vedran Hrgovcic, Fabio Mancinelli} 
+  \historyitem{0.2}{Switch to the \LaTeX Template}{Jean Simard} 
+\end{history}
+
+%%% ------------------------------------------------------
+%%% ---------------- review table with the previous info
+%%% ------------------------------------------------------
+\reviewtable
+
+%%% ------------------------------------------------------
+%%% ---------------- acronyms
+%%% ------------------------------------------------------
+\begin{acronyms}
+  \acronym{CA}{Consortium Agreement}%
+  \acronym{DL}{Deliverable Leader}%
+  \acronym{DOW}{Description of Work}%
+  \acronym{IAC}{Industrial Advisory Committee}%
+  \acronym{MST}{Management support team}%
+  \acronym{OSS}{Open Source Software}%
+  \acronym{PL}{Project Leader}%
+  \acronym{PMB}{Project Management Board}%
+  \acronym{PO}{Project Officer}%
+  \acronym{PTC}{Project Technical Committee}%
+  \acronym{SL}{Scientific Leader}%
+  \acronym{TL}{Technical Leader}%
+  \acronym{WP}{Work Package}%
+  \acronym{WPL}{Work Package Leader}%
+  \acronym{CA}{Consortium Agreement}%
+  \acronym{IAC}{Industrial Advisory Committee}%
+\end{acronyms}
+
+\tableofcontents
+
+%%% ------------------------------------------------------
+% In case you don't need one of the following list 
+% just comment the line
+%%% ------------------------------------------------------
+
+%\listoftables 
+\listoffigures 
+%\listoflistings
+
+%%% ------------------------------------------------------
+
+\mainmatter
+
+\input{intro}
+\input{preamble}
+\input{development-components}
+\input{development-process}
+\input{integration-plan}
+
+% ---------------------------------- Bibliography starts here
+% ----------------------------------
+
+\bibliographystyle{plain} 
+\bibliography{biblio}
+
+\end{document}

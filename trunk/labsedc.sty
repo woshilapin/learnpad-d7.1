@@ -1,0 +1,168 @@
+\typeout{LabSEDC utils.}
+
+\usepackage{color}
+\usepackage{pifont}
+\usepackage{listings}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{url}
+\usepackage[T1]{fontenc}
+\usepackage{marginnote}
+\usepackage{framed}
+
+%--------------------------------------------
+% misc formatting shortcuts
+
+% code
+\newcommand{\code}[1]{{\tt #1}}
+% acronyms
+\newcommand{\acron}[1]{\textsf{#1}}
+% stereotypes
+\newcommand{\stereotype}[1]{\guillemotleft#1\guillemotright}
+%--------------------------------------------
+
+\newcommand{\header}[1]{\vspace{.2\baselineskip}\noindent\textbf{#1.}}
+
+% **************************************+++
+%  annotations
+% **************************************+++
+
+\newboolean{showtodos}
+\setboolean{showtodos}{false}
+% 
+\newboolean{showcomments}
+\setboolean{showcomments}{false}
+% 
+\DeclareOption{showcomments}{\setboolean{showcomments}{true}}
+\DeclareOption{showtodos}{\setboolean{showtodos}{true}}
+\ProcessOptions
+
+% \newboolean{showtodos}
+% \setboolean{showtodos}{true} % toggle to show or hide comments
+% % \setboolean{showtodos}{false} % toggle to show or hide comments
+\ifthenelse{\boolean{showtodos}}
+  {
+    \newcommand{\todomarker}[4]{\marginnote{\textcolor{#1}{#2}}\footnote{
+    \textcolor{#1}{\it\scriptsize {\textbf{\sf \underline{#3}:~#4}}}}}
+  }
+  {
+    \newcommand{\todomarker}[4]{}
+  }
+
+\newcommand {\TODO}[1]{\todomarker{blue}{\ding{46}}{todo}{#1}}
+
+% \newboolean{showcomments}
+% \setboolean{showcomments}{true} % toggle to show or hide comments
+% % \setboolean{showcomments}{false} % toggle to show or hide comments
+\ifthenelse{\boolean{showcomments}}
+  {
+    \newcommand{\notemarker}[4]{\marginnote{\textcolor{#1}{#2}}\footnote{
+    \textcolor{#1}{\it\scriptsize {\textbf{\sf \underline{#3}:~#4}}}}}
+  }
+  {
+    \newcommand{\notemarker}[4]{}
+  }
+
+\newcommand{\gulyx}[1]{\notemarker{red}{\ding{74}}{Gulyx}{#1}}
+% %
+\newcommand{\anto}[1]{\notemarker{red}{\ding{95}}{Antonella}{#1}}
+% %
+\newcommand{\andrea}[1]{\notemarker{red}{\ding{70}}{Andrea}{#1}}
+% %
+\newcommand{\eda}[1]{\notemarker{red}{\ding{164}}{Eda}{#1}}
+% %
+\newcommand{\fra}[1]{\notemarker{red}{\ding{46}}{Francesca}{#1}}
+% %
+\newcommand{\cesare}[1]{\notemarker{red}{\ding{105}}{Cesare}{#1}}
+% %
+\newcommand{\antonello}[1]{\notemarker{red}{\ding{40}}{Antonello}{#1}}
+% %
+\newcommand{\felicita}[1]{\notemarker{red}{\ding{50}}{Felicita}{#1}}
+% %
+\newcommand{\breno}[1]{\notemarker{red}{\ding{72}}{Breno}{#1}}
+% %
+\newcommand{\silvano}[1]{\notemarker{red}{\ding{118}}{Silvano}{#1}}
+
+% **************************************+++
+% **************************************+++
+
+% **************************************+++
+%  ACKS PROJECTS
+% **************************************+++
+
+\newcommand{\tasproject}{the European Project FP7 IP 216287: {{TAS$^{3}$}}\xspace}
+\newcommand{\connectproject}{the European Project FP7 FET IP 231167: CONNECT\xspace}
+\newcommand{\choreosproject}{the European Project FP7 IP 257178: CHOReOS\xspace}
+\newcommand{\ipermobproject}{the Regione Toscana Project POR CReO FESR: IPERMOB\xspace}
+\newcommand{\dasapproject}{the Italian MIUR PRIN 2007 Project D-ASAP\xspace}
+\newcommand{\nessosproject}{the European Project FP7 NoE 256980: NESSoS\xspace}
+
+% **************************************+++
+% **************************************+++
+
+%-------------------------------------------------------------------------------
+
+\definecolor{listingsBackground}{rgb}{0.9,0.9,0.9}
+\lstdefinestyle{lstCodeWithLines}{
+% language=XML,
+frame=tbrl,
+  basicstyle=\sf\scriptsize,keywordstyle=\ttfamily\bf,
+  stringstyle=\itshape,flexiblecolumns=true,showspaces=false,
+  commentstyle=\itshape,captionpos=b,abovecaptionskip=10pt,belowcaptionskip=0pt,
+  backgroundcolor=\color{listingsBackground}, frame=none
+%, numbers=left, numberstyle={\tiny }
+}
+
+\lstdefinestyle{xmlCodeWithLines}{language=XML,frame=tbrl,
+  basicstyle=\scriptsize\ttfamily,keywordstyle=\ttfamily\bf,
+  stringstyle=\itshape,flexiblecolumns=true,showspaces=false,
+  showstringspaces=false,
+commentstyle=\itshape,captionpos=b,abovecaptionskip=10pt,belowcaptionskip=0pt,
+  backgroundcolor=\color{listingsBackground}, frame=none
+, numbers=left, numberstyle={\tiny }
+}
+
+\lstdefinestyle{javaCodeWithLines}{language=Java,frame=tbrl,
+  basicstyle=\scriptsize\ttfamily,keywordstyle=\ttfamily\bf,showspaces=false,
+  stringstyle=\itshape,flexiblecolumns=true,
+commentstyle=\itshape,captionpos=b,abovecaptionskip=10pt,belowcaptionskip=0pt,
+  backgroundcolor=\color{listingsBackground}, ,showspaces=false, frame=none
+, numbers=left, numberstyle={\tiny }
+}
+
+% ******************************************************************
+% Support for the footnotes within ``framed''. 
+% ******************************************************************
+
+\makeatletter
+
+\newcommand\mystuff@footnotebuffer{}
+\newcounter{mystuff@footnote}
+
+\newcommand\bufferfootnotes{%
+	\let\mystuff@footnoteold\footnote%
+	\setcounter{mystuff@footnote}{\thefootnote}%
+	\renewcommand\mystuff@footnotebuffer{}%
+	\renewcommand{\footnote}[1]{%
+		\footnotemark%
+		\g@addto@macro{\mystuff@footnotebuffer}{%
+			\stepcounter{mystuff@footnote}%
+			\protect\footnotetext[\themystuff@footnote]{##1}%
+		}%
+	}%
+}
+\newcommand\stopbufferingfootnotes{%
+	\mystuff@footnotebuffer%
+	\renewcommand{\footnote}[1]{\mystuff@footnoteold{##1}}%
+}
+
+\newenvironment{safeframed}{
+\bufferfootnotes
+\begin{framed}
+}{
+\end{framed}
+\stopbufferingfootnotes
+}
+
+% ******************************************************************
