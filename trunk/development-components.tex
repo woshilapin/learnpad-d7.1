@@ -16,34 +16,36 @@
 \section{Details}
 \label{sec:details}
 
-The previous figure illustrates the global development workflow.  In this workflow, there is two different kind of actors (developers and committers) which interact with different kind of tools.  We will now give more details on these tools and how they will be used by the actors.
+The previous figure illustrates the global development workflow.  In this workflow, there is two different kind of actors (developers and committers) which interact with different kind of tools.
 
 \subsection{Mailing list}
 \label{sec:mailing-list}
 
-Most of the communication between the developers and the committers use the mailing list medium to interact and discuss general decision about the platform.  The goal is to keep traces of any discussion or choice that may have been made about developments or architecture design.
+An email mailing list will be available for general decision about the platform, the goal being to keep records of discussions and choices about developments or architecture design.
 
 \subsection{Source repository}
 \label{sec:source-repository}
 
-This is where every part of source code or binary for building the LearnPAd platform are stored.  Only a subset of people, the committers, have the rights to modify and update this repository.  Developers propose new functionality or bug fixing as pull requests that committers will review then will accept or reject.  Every pull request should link to the corresponding bug (in the bug tracking system) when it applies.
+This is where every part of source code or binary for building the LearnPAd platform will be stored.  Only a subset of people, the committers, have the rights to modify and update this repository.  Developers propose new functionality or bug fixing as \emph{pull requests}\footnote{A pull request is a method of submitting contributions to a software project. It contains the \emph{patch} representing changes to be made and creates a central place for those changes to be reviewed and discussed} that committers will review and accept, request changes or further information or in extreme cases, close them pending further discussion. 
+
+Developers should adopt the \emph{check in early and often} development methodology. Code in development is not expected to be bug-free but great importance is placed on collaboration and working in the open. In a fast-changing collaborative software development project, frequent pull requests help everybody. They help the developer making them because he is able to avoid rewriting code to cope with changes in other elements of the system and they also help other developers who are able to see and adapt to changes in this developer's component.
 
 \subsection{Documentation}
 \label{sec:documentation}
 
-Developers document what they are developing on a centralized tool.  On this tool, they push source documentation, architecture documentation, interface and API documentation.
+Documentation will be able to be written accompanying the source code in the repository or it may be places on a provided wiki as long as relevant documents are referenced from the source repository.
 
 \subsection{Bug tracking system}
 \label{sec:bug tracking-system}
 
-Committers may detect bugs during the reviewing step; they will report them on the bug tracking system which in return will notify concerned developers.  Developers are also using the bug tracking system to report and trace bugs.  For the reporting, links with the source repository must be done (a version, a file, a component, etc.).
+All participants will be responsible for discovering and diagnosing of bugs. Bugs, feature requests and other to-do items shall be reported to a provided bug tracking system where others will be able to keep track of issues which need to be addressed.
 
 \subsection{Continuous integration}
 \label{sec:continuous-integration}
 
-The goal of continuous integration is to regularly check that everything published on the source repository is always buildable and meets at least major functionalities.  He also automatically check the last version against pull request to help committers to take decisions about a pull request; as long as a pull request imply a wrong build of the platform, it must be rejected.
+Continuous integration is an automated process by which the current state of the source code is built into a final product, any automated tests are run and the final product is made available to developers so that they can test the interaction of their commits in near-real-time. It will also automatically check the last version against pull request in order to help committers make decisions about a pull request; in order to protect the working environment of all developers, committers must reject a pull requests if it causes a wrong builds of the platform.
 
 \subsection{Live snapshot}
 \label{sec:live-snapshot}
 
-Live snapshots are the result of the continuous integration building the LearnPAd platform against each of the opened pull requests.  The committers use these snapshots to test and review pull requests before accepting them.
+Periodically the most recent build of the LearnPAd platform will be automatically published on a live server which is accessible to all of the collaborators. This will aid in bug detection and provide a base for discussion of additional features and the direction of the project.

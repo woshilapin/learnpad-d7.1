@@ -4,7 +4,7 @@
 \section{SOA architecture}
 \label{sec:soa-architecture}
 
-The LearnPAd project is involving 9 partners, each of them producing one or more functionalities in this architecture.  To ease the collaboration between partners, we need to delimit the scope for each functionality in order to precisely define the interactions needed.  A solution to manage this problem is encaspulation of functionalities which delimits the scope with inputs and outputs.  Encapsulation as services leads us to a Service-Oriented Architecture also known as SOA.
+The LearnPAd project involves 9 partners, each of whom will produce one or more functionalities in this architecture.  To ease the collaboration between partners, we need to delimit the scope for each functionality in order to precisely define the interactions needed.  A solution to manage this problem is encaspulation of functionalities which delimits the scope with inputs and outputs.  Encapsulation as services leads us to a Service-Oriented Architecture also known as SOA.
 
 SOA is a loosely coupled architecture which means that:
 * each service delimits a scope of functionalities
@@ -13,8 +13,8 @@ SOA is a loosely coupled architecture which means that:
 \section{Source management}
 \label{sec:source-management}
 
-In LearnPAd projects, most developments will be licensed as open source.  That means that every source code developed in the consortium will be available publicly, mostly on a source versioning system (for example, GitHub, BitBucket or a svn server).
-However, some of them must be licensed as proprietary source code which will have consequences on our development process.  We still must be able to build and deploy the LearnPAd platform but we cannot access sources in this case.  Depending on the situation, we may have different solutions.
+In LearnPAd projects, most developments will be distributed under an Open Source license.  That means that all source code developed in the consortium will be available publicly, mostly on a source versioning system such as GitHub.
+Integration of proprietary products into the project where the source is not available will be handled on a case by case basis.
 
 \subsection{External service}
 \label{sec:external-service}
@@ -24,4 +24,4 @@ In some cases, the functionality can be deployed as a public service, accessible
 \subsection{Internal service}
 \label{sec:internal-service}
 
-In some other cases, it may easier to create the service as a component (for example, a library, an executable).  In this case, only the resulting binary file will be pushed on the source repository of LearnPAd project; only stable versions of this binary files will be pushed.  The development of this service can still be developed independantly of the main branch of LearnPAd platform but will meet the requirements of a pre-defined roadmap.
+In some other cases, it may easier to create the service as a component (for example, a library, an executable).  In this case, only the resulting binary file will be pushed on the public source repository of LearnPAd project.  The development of this service can still be developed independantly of the main branch of LearnPAd platform but will meet the requirements of a pre-defined roadmap.
