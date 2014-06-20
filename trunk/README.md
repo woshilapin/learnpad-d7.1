@@ -1,0 +1,8 @@
+# LearnPAd EU Research Project deliverable 7.1
+
+To build this:
+
+    sudo aptitude install texlive-latex-extra texlive-latex-base
+    make
+
+**NOTE:** The build is currently broken.
