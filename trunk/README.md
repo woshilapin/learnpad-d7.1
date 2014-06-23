@@ -2,5 +2,5 @@
 
 To build this:
 
-    sudo aptitude install texlive-latex-extra texlive-latex-base texlive-fonts-recommended
+    sudo aptitude install pdflatex texlive-latex-extra texlive-latex-base texlive-fonts-recommended
     make
