@@ -2,7 +2,5 @@
 
 To build this:
 
-    sudo aptitude install texlive-latex-extra texlive-latex-base
+    sudo aptitude install texlive-latex-extra texlive-latex-base texlive-fonts-recommended
     make
-
-**NOTE:** The build is currently broken.
