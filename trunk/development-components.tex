@@ -15,7 +15,8 @@
 \label{sec:details}
 
 The Figure~\ref{fig:development-workflow} illustrates the global development workflow.
-In this workflow, there is two different kind of actors (developers and committers) which interact with different kind of tools.
+In this workflow, there is two different kind of actors (developers and integrators) which
+interact with different kind of tools.
 We will now give more details on these tools and how they will be used by the actors.
 
 \subsection{Mailing list}
@@ -34,12 +35,13 @@ Developers will propose new functionality or bug fixing using \emph{pull request
 \footnote{A pull request is a method of submitting contributions to a software project.
 It contains the \emph{patch} representing changes to be made and creates a central place
 for those changes to be reviewed and discussed}
-which committers will have the duty to review. A committer may and accept the \emph{pull request},
-request changes or further information or in an extreme case, close it pending further discussion.
+which integrators will have the duty to review. An integrator may and accept the
+\emph{pull request}, request changes or further information or in an extreme case,
+close it pending further discussion.
 
-Despite having direct access to the shared repository, a committer who is also a developer should
+Despite having direct access to the shared repository, an integrator who is also a developer should
 make sure to use \emph{pull requests} for integrating their own functionality so as to allow for
-discussion with other committers and developers and to keep record of the contribution.
+discussion with other integrators and developers and to keep record of the contribution.
 
 All developers should adopt the \emph{check in early and often} development methodology.
 Code in development is not expected to be bug-free but great importance is placed on collaboration
@@ -68,9 +70,9 @@ will be able to keep track of issues which need to be addressed.
 Continuous integration is an automated process by which the current state of the source code is
 built into a final product, any automated tests are run and the final product is made available
 to developers so that they can test the interaction of their commits in near-real-time.
-Automated builds may also be used as an aid for committers to do "smoke test" validation on pull
+Automated builds may also be used as an aid for integrators to do "smoke test" validation on pull
 requests before accepting them. In order to protect the working environment of all developers,
-it is critical that committers reject or remove any pull request which causes an incorrect build
+it is critical that integrators reject or remove any pull request which causes an incorrect build
 of the platform.
 
 \subsection{Live snapshot}
