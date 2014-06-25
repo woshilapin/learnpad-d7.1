@@ -62,22 +62,27 @@ repository.
 
 All participants will be responsible for discovering and diagnosing of bugs. Bugs, feature
 requests and other to-do items shall be reported to a provided bug tracking system where others
-will be able to keep track of issues which need to be addressed.
+will be able to keep track of issues which need to be addressed. Email notifications of new
+issues will be sent to integrators and updates of an issue will be sent to those who participate in
+(EG: comment on) the issue.
 
 \subsection{Continuous integration}
 \label{sec:continuous-integration}
 
 Continuous integration is an automated process by which the current state of the source code is
 built into a final product, any automated tests are run and the final product is made available
-to developers so that they can test the interaction of their commits in near-real-time.
+to developers so that they can test the interaction of their commits in near-real-time. The platform
+will be built and deployed on the \emph{target system}, a computer running an installation of
+Ubuntu 12.04 LTS \footnote{The stable version of a widely used Linux distribution.}.
 Automated builds may also be used as an aid for integrators to do "smoke test" validation on pull
 requests before accepting them. In order to protect the working environment of all developers,
-it is critical that integrators reject or remove any pull request which causes an incorrect build
+it is critical that integrators reject or revert any pull request which causes an incorrect build
 of the platform.
 
 \subsection{Live snapshot}
 \label{sec:live-snapshot}
 
 Periodically, the most recent build of the \learnpad platform will be automatically published
-on a live server which is accessible to all of the collaborators. This will aid in bug detection
-and provide a base for discussion of additional features and the direction of the project.
+on a live server running the \emph{target system} so that it can be accessible to all of the
+collaborators. This will aid in bug detection and provide a base for discussion of additional
+features and the direction of the project.

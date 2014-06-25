@@ -4,94 +4,140 @@
 \section{Documentation}
 \label{sec:documentation}
 
-There are a few occasions where documentation will be needed such as architectural design,
-configuration and deployment, produced source code and complex algorithms.
+There are a few occasions when documentation will be needed such as architectural
+design and configuration.
 
 \subsection{Architecture design}
 \label{sec:architecture-design}
 
-% TODO(cjd): Is "set in stone" ok to use in a paper?
 According to the Agile Development Methodology, architectural design should not be set in
 stone and changes can be made as experience is gained. Therefor architectural design
 decisions need not be perfect the first time, better to have something quickly which
 satisfies the obvious use cases than to try to project every possible need.
 
 Discussion of architectural design should take place on the mailing list or in logged
-chatroome where there is a record of the thoughts and reasoning, as ideas solidify and
-consensus forms, they should move to the wiki where they becomes official documentation.
+chatroom where there is a record of the thoughts and reasoning. As ideas solidify and
+consensus forms, they should move to the wiki where they become official documentation.
 
 For producing diagrams, a server is available for collaborative work using MagicDraw.
 When applicable, MagicDraw can be used for development of ideas on concert with the
 mailing list. To minimize the number of places where documentation resides, ideas and
 diagrams which have solidified should be exported and placed in the wiki or in the source
-repository as appropriate.
+repository.
 
+\subsection{Interfaces}
+\label{sec:interfaces}
+
+Two main types of interfaces are Application Programming Interface (API): the way in
+which components communicate, and User Interface (UI): the way in which a component
+communicates with a human. In either case it is important to clearly document interfaces
+and put a link to this documentation in the \texttt{readme.md} file
+(see Section~\ref{sec:source-structure}).
+For UI development, use of mockups is highly recommended.
 
 \subsection{Configuration and Deployment}
 \label{sec:deployment-process}
 
-Since the system will be automatically built and installed on a live test server
-(see Section~\ref{live-snapshot}), each component shall be responsible for functioning
-with default configuration or none at all.
+Since the system will be automatically installed on a live test server
+(see Section~\ref{live-snapshot}), each component requiring configuration must contain
+default configuration.
 
-However, real world implementations will likely look significantly different than the live
-snapshot so there is much room for configuration and configuration options require
-documentation.
-%TODO(cjd): should config documentation be put in a special place where it can be aggregated?
+Documentation of the configuration should be done in the configuration files. If more
+documentation is necessary, there must be URLs in the configuration file which tell
+administrators where to find the additional information.
 
-\subsection{Source code}
-\label{sec:source-code}
+\section{Roadmap and Development Milestones}
+\label{sec:roadmap}
 
-%TODO(cjd): Is this really necessary?
-It exists a lot of supporting tools to document code (Doxygen, JavaDoc, PythonDoc, etc.).
-No matter what tool is used, each code should be documented at least at the file level: what the
-script is for? what the class is for? etc.
+There is two different types of roadmaps.
 
-\subsection{Complex algorithms}
-\label{sec:complex-algorithms}
+\subsection{Global roadmap}
+\label{sec:global-roadmap}
 
-Some specific parts of source code needs a specific documentation.
-Complex algorithms for example, needs a detailed and structured documentation.
-Basic source code documentation can be done (see Section~\ref{sec:source-code}) but in these cases,
-documentation on the wiki or publication of a paper may happen.
+The global roadmap will be a broad picture of the project, based on the deliverable
+deadlines. Releases will take place every three months or six Development Milestones.
+In the final two week period before the release date, the most recent Development
+Milestone will be manually tested by each partner in order to verify that the
+features for which this partner is responsible work well. At the beginning of this
+two week development cycle, a stable branch will be created and only critical and
+"safe" bug fixes will be accepted to the branch prior to release.
+
+\subsection{Partner roadmaps}
+\label{sec:partner-roadmaps}
+
+Each component will have a responsible partner and this partner must provide a roadmap
+detailing timeframes and objectives for the components under their responsibility. At any
+given time, a roadmap should contain goals for the next three months.
+Development Milestones will take place every two weeks and each two weeks there will be
+a roadmap meeting to check in on progress and set new goals. Each partner's roadmap
+should be contained in a document on the wiki where it can be reviewed at each bi-weekly
+roadmap meeting.
 
 \section{Source management}
 \label{sec:source-management}
 
-As already said, all source code will be store in a single repository, using a distributed version
-control system like git, mercurial, Subversion, etc.
-To ease the collaboration, each service will takes place in one subdirectory of this main
-repository. The source will be published on a public server, and also accessible with an web
-front-end to ease some of the manipulations (like GitHub, BitBucket, etc.).
+All source code will be stored in a single repository using a distributed version control
+system such as git. To simplify collaboration, each component will be developed in one
+sub-folder of a \texttt{components} directory. The source will be published on a public
+server such as GitHub, where it can be cloned or viewed with a web browser.
+
+\subsection{Source structure}
+\label{sec:source-structure}
+The partner in charge of managing development of a component will be free to organize the content
+of this sub-folder in any way as long as a few standardized files are contained within.
+
+\begin{itemize}
+\item \texttt{readme.md} This file will contain the entry-point to all documentation of this
+component. At the very least, this file must contain contact information for the manager of
+the component and a link to their roadmap (see: Section~\ref{sec:roadmap}).
+\item \texttt{build} This will be a script file which is executable on the \emph{target system}
+(see Section~\ref{continuous-integration}) and will build the component.
+\item \texttt{builddeps.txt} This \emph{optional} file will contain a list of packages which
+need to be installed using the \emph{target system's} package manager (EG: apt-get) in order for
+the component to be built.
+\item \texttt{out} This folder will be created by the \emph{build} script and will contain the
+result of the build, everything that is necessary for this component to run.
+\item \texttt{out/etc} This folder, named after the UNIX \texttt{/etc} configuration folder will
+contain all of the configuration files necessary for the component.
+\item \texttt{out/start} This will be a script file which initiates the completed component, it will
+expect it's configuration to reside in the \emph{out/etc} folder and must be capable of starting
+the component with no manual intervention.
+\item \texttt{out/stop} This script will behave similarly to \emph{start} but will stop the running
+component.
+\item \texttt{out/rundeps.txt} This \emph{optional} file will contain a list of package names,
+like \texttt{builddeps.txt}, but with packages necessary for the component to \emph{run}.
+\end{itemize}
+
+\subsection{Source development flow}
+\label{sec:source-development-flow}
+
+We will use the \emph{git flow}\cite{kreeftmeijer:2010} development model. The main repository will
+contain a \texttt{master} and a \texttt{develop} branch. Every developer should work on his
+own fork of the project then submit pull requests (see Section~\ref{sec:source-repository})
+which will be checked by integrators for merging with the \texttt{develop} branch of the main
+repository. Then, for each Development Milestone or release, the \texttt{develop} branch will
+be merged onto the \texttt{master} branch. Thus the \texttt{master} branch will always contain
+the most recent Development Milestone version.
 
 \section{Building}
 \label{sec:building}
 
 As seen in the Figure~\ref{fig:development-workflow}, a continuous integration will support the
-development of the platform. That means that every service should be buildable automatically.
+development of the platform. That means that every service must be automatically buildable.
 As seen in Source Management (see Section~\ref{sec:source-management}), each service will be a
-folder in the source repository. This should allow more freedom in the management of development
-activities (tools used, subdirectories, etc.). To ease the global build, each service must provide
-a file to automatically build it (for example, each folder will contain a \texttt{build.sh} file).
+folder in the source repository in order to maximize freedom in the management of development
+activities (tools used, subdirectories, etc.). To simplify the overall build, each folder must
+contain a standardized script for building the component in that folder how that script manages
+the build is an implementation detail.
+
 At the root of the repository, a global builder will parse all of the services to build them.
 If specific deployment procedures must be done, they should also appear in this build process.
 
 \section{Testing}
 \label{sec:testing}
 
-Testing is an important part for the continuous integration.
-Unit tests should be developed as the service level; they will help to check the builds and avoid
-regressions as much as possible. Integration tests should allow the continuous integration that
-everything is right during a standard deployment with the last versions of all the services.
-
-For unit tests, each service must provide a way to run the tests (for example, by giving a
-\texttt{test.sh} file or by allowing a \texttt{test} functionality to the \texttt{build.sh}).
-Integration and functional tests are higher levels and should be defined in collaboration.
-
-\section{Bug tracking}
-\label{sec:bug-tracking}
-
-Each bug will be tracked with a centralized tool like JIRA, Mantis, GitHub, etc.
-The procedure is to report bug each time you encounter problem using services of other partners.
-Each partner can also use the tool for reporting its own bugs.
-The bug tracking system must be able to notify users by email.
+Unit tests may be run as part of the build process but integration tests which require the
+\learnpad platform in a running state must be handled differently. The exact methodology
+remains a topic for further research but possible solutions include a special sub-folder
+for all integration tests or a set of integration tests included in each component and built
+separately from the normal build.
