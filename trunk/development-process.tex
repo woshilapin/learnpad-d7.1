@@ -2,7 +2,7 @@
 \label{ch:development-process}
 
 \section{Documentation}
-\label{sec:documentation}
+\label{sec:documentation2}
 
 There are a few occasions when documentation will be needed such as architectural
 design and configuration.
@@ -39,7 +39,7 @@ For UI development, use of mockups is highly recommended.
 \label{sec:deployment-process}
 
 Since the system will be automatically installed on a live test server
-(see Section~\ref{live-snapshot}), each component requiring configuration must contain
+(see Section~\ref{sec:live-snapshot}), each component requiring configuration must contain
 default configuration.
 
 Documentation of the configuration should be done in the configuration files. If more
@@ -91,7 +91,7 @@ of this sub-folder in any way as long as a few standardized files are contained 
 component. At the very least, this file must contain contact information for the manager of
 the component and a link to their roadmap (see: Section~\ref{sec:roadmap}).
 \item \texttt{build} This will be a script file which is executable on the \emph{target system}
-(see Section~\ref{continuous-integration}) and will build the component.
+(see Section~\ref{sec:continuous-integration}) and will build the component.
 \item \texttt{builddeps.txt} This \emph{optional} file will contain a list of packages which
 need to be installed using the \emph{target system's} package manager (EG: apt-get) in order for
 the component to be built.
