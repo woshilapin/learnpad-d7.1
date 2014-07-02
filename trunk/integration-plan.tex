@@ -1,0 +1,34 @@
+\chapter{Integration plan}
+\label{ch:integration-plan}
+
+\subsection{Continuous integration}
+\label{sec:continuous-integration}
+
+Continuous integration is an automated process by which the current state of the source code is
+built into a final product, any automated tests are run and the final product is made available
+to developers so that they can test the interaction of their commits in near-real-time. The platform
+will be built and deployed on the \emph{target system}, a computer running an installation of
+Ubuntu 12.04 LTS \footnote{The stable version of a widely used Linux distribution.}.
+Automated builds may also be used as an aid for integrators to do "smoke test" validation on pull
+requests before accepting them. In order to protect the working environment of all developers,
+it is critical that integrators reject or revert any pull request which causes an incorrect build
+of the platform.
+
+\subsection{Live snapshot}
+\label{sec:live-snapshot}
+
+Periodically, the most recent build of the \learnpad platform will be automatically published
+on a live server running the \emph{target system} so that it can be accessible to all of the
+collaborators. This will aid in bug detection and provide a base for discussion of additional
+features and the direction of the project.
+
+\subsection{Release Process}
+\label{sec:release-process}
+
+As described in the Global Roadmap (see Section~\ref{sec:global-roadmap}), releases will happen
+every 6 Development Milestones. In the final 2 week development cycle before the release, a stable
+branch of the source code will be created and partners will be asked to test the features for
+which they are responsible. The live snapshot will be available for this. During these two weeks,
+only minor bug-fix patches will be accepted to the stable branch and only if Integrators judge them
+to be low risk to the release. At the end of the 2 week development cycle, a final version of the
+release will be created and made available for download by the partners and stakeholders.
