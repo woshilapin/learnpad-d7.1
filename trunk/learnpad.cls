@@ -4,11 +4,11 @@
 % Guglielmo De Angelis <guglielmo.deangelis@isti.cnr.it>
 % Andrea Polini <andrea.polini@unicam.it>
 %
-% This Class is based on the LaTeX Class 'choreos' version 0.2
+% This Class is based on the LaTeX Class 'choreos' version 0.4
 % -----------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\def\@learnpadtemplateversion{0.2}
-\def\@learnpadtemplatedaterelease{2014/04/08}
+\def\@learnpadtemplateversion{0.4}
+\def\@learnpadtemplatedaterelease{2014/04/24}
 \ProvidesClass{learnpad}[ \@learnpadtemplatedaterelease - LaTeX class for the Learn PAd project v. \@learnpadtemplateversion]
 % -----------------------------------------------------------------------------
 
@@ -141,9 +141,9 @@ bindingoffset=0mm, includefoot, includehead,headheight=13.6pt]{geometry}
 \centering
   \ifthenelse{\boolean{isthedeliverablepulic}}
   {
-\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{logos/frontpage6.png}  
+\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{logos/frontpage7.png}  
   }{
-\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{logos/frontpage6NoCC.png}  
+\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{logos/frontpage7NoCC.png}  
   }
 \vfill
 }}}
@@ -406,8 +406,13 @@ bindingoffset=0mm, includefoot, includehead,headheight=13.6pt]{geometry}
   \rhead{}
   \lfoot{\parbox[c]{3cm}{\footnotesize \color{learnpadGray}  \learnpad \\
       FP7-619583}}
-  \cfoot{\parbox[c]{5cm}{\centering \includegraphics[height=0.5
-      cm]{logos/ccLogoSmall.png}}}
+  \cfoot{\parbox[c]{5cm}{\centering 
+  \ifthenelse{\boolean{isthedeliverablepulic}}
+  {
+\includegraphics[height=0.5cm]{logos/ccLogoSmall.png}
+  }{
+\color{learnpadGray} \footnotesize \textbf{-- \@thedeliverablelicenceconfidentialmessage --}
+  }}}
   \rfoot{\parbox[c]{3cm}{\flushright \color{learnpadGray} \footnotesize
       \thepage}}%\thepage/\pageref{LastPage}
 \color{learnpadDefaultTextColor} 
@@ -535,11 +540,11 @@ bindingoffset=0mm, includefoot, includehead,headheight=13.6pt]{geometry}
 \gdef\@draftdate{} \gdef\@draftversion{} \gdef\@draftreviewers{}
 \gdef\@draftcomments{}
 
-\gdef\@qadate{} \gdef\@qaversion{} \gdef\@qareviewers{}
-\gdef\@qacomments{}
+\gdef\@internaldate{} \gdef\@internalversion{} \gdef\@internalreviewers{}
+\gdef\@internalcomments{}
 
-\gdef\@ptcdate{} \gdef\@ptcversion{} \gdef\@ptcreviewers{}
-\gdef\@ptccomments{}
+\gdef\@candidatefinaldate{} \gdef\@candidatefinalversion{} \gdef\@candidatefinalreviewers{}
+\gdef\@candidatefinalcomments{}
 
 \def\reviewoutline#1#2#3#4{\gdef\@outlinedate{#1}
   \gdef\@outlineversion{#2} \gdef\@outlinereviewers{#3}
@@ -548,26 +553,26 @@ bindingoffset=0mm, includefoot, includehead,headheight=13.6pt]{geometry}
 \def\reviewdraft#1#2#3#4{\gdef\@draftdate{#1} \gdef\@draftversion{#2}
   \gdef\@draftreviewers{#3} \gdef\@draftcomments{#4}}
 
-\def\reviewqa#1#2#3#4{\gdef\@qadate{#1} \gdef\@qaversion{#2}
-  \gdef\@qareviewers{#3} \gdef\@qacomments{#4}}
+\def\reviewinternal#1#2#3#4{\gdef\@internaldate{#1} \gdef\@internalversion{#2}
+  \gdef\@internalreviewers{#3} \gdef\@internalcomments{#4}}
 
-\def\reviewptc#1#2#3#4{\gdef\@ptcdate{#1} \gdef\@ptcversion{#2}
-  \gdef\@ptcreviewers{#3} \gdef\@ptccomments{#4}}
+\def\reviewcandidatefinal#1#2#3#4{\gdef\@candidatefinaldate{#1} \gdef\@candidatefinalversion{#2}
+  \gdef\@candidatefinalreviewers{#3} \gdef\@candidatefinalcomments{#4}}
 
 \newcommand{\reviewtable} {
   \section*{\color{learnpadBlue}{Document Reviews}}
   \begin{table}[h!]\centering
     \begin{tabular}{|>{\centering}m{0.09\textwidth}|m{0.13\textwidth}|m{0.06\textwidth}|m{0.18\textwidth}|m{0.34\textwidth}|}
       \hline 
-      \tableformat{Review} & \centering \tableformat{Date} & \centering \tableformat{Ver.} & \centering \tableformat{Reviewers} & \centering \tableformat{Comments} \tabularnewline
+      \tableformat{Release} & \centering \tableformat{Date} & \centering \tableformat{Ver.} & \centering \tableformat{Reviewers} & \centering \tableformat{Comments} \tabularnewline
       \hline
-      \tableformat{Outline} & \@outlinedate &  \@outlineversion & \@outlinereviewers  & \@outlinecomments \tabularnewline
+      \tableformat{ToC} & \@outlinedate &  \@outlineversion & \@outlinereviewers  & \@outlinecomments \tabularnewline
       \hline
       \tableformat{Draft} & \@draftdate &  \@draftversion & \@draftreviewers  & \@draftcomments \tabularnewline
       \hline
-      \tableformat{QA} & \@qadate &  \@qaversion & \@qareviewers  & \@qacomments \tabularnewline
+      \tableformat{Internal} & \@internaldate &  \@internalversion & \@internalreviewers  & \@internalcomments \tabularnewline
       \hline
-      \tableformat{PTC} & \@ptcdate &  \@ptcversion & \@ptcreviewers  & \@ptccomments \tabularnewline
+      \tableformat{Candate Final} & \@candidatefinaldate &  \@candidatefinalversion & \@candidatefinalreviewers  & \@candidatefinalcomments \tabularnewline
       \hline
       % } {
     \end{tabular}
