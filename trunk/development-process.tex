@@ -39,8 +39,10 @@ For UI development, use of mockups is highly recommended.
 \label{sec:deployment-process}
 
 Since the system will be automatically installed on a live test server
-(see Section~\ref{sec:live-snapshot}), each component requiring configuration must contain
-default configuration.
+(see Section~\ref{sec:live-snapshot}), each component requiring configuration must
+contain default configuration. Passwords or other secret information in the build
+configuration may be encrypted using a secret key which is stored on the travis-ci
+continuous integration server (see Section~\ref{sec:ci-server}).
 
 Documentation of the configuration should be done in the configuration files. If more
 documentation is necessary, there must be URLs in the configuration file which tell
@@ -76,10 +78,10 @@ roadmap meeting.
 \section{Source management}
 \label{sec:source-management}
 
-All source code will be stored in a single repository using a distributed version control
-system such as git. To simplify collaboration, each component will be developed in one
-sub-folder of a \texttt{components} directory. The source will be published on a public
-server such as GitHub, where it can be cloned or viewed with a web browser.
+Since all source code will be stored in a single Github repository
+(see: Section~\ref{sec:source-repository}), each developer will have a working copy of the entire
+project. To simplify collaboration, each component will be contained in one sub-folder within the
+source structure.
 
 \subsection{Source structure}
 \label{sec:source-structure}
@@ -91,9 +93,9 @@ of this sub-folder in any way as long as a few standardized files are contained 
 component. At the very least, this file must contain contact information for the manager of
 the component and a link to their roadmap (see: Section~\ref{sec:roadmap}).
 \item \texttt{build} This will be a script file which is executable on the \emph{target system}
-(see Section~\ref{sec:continuous-integration}) and will build the component.
+(see Section~\ref{sec:ci-server}) and will build the component.
 \item \texttt{builddeps.txt} This \emph{optional} file will contain a list of packages which
-need to be installed using the \emph{target system's} package manager (EG: apt-get) in order for
+need to be installed using the \emph{target system's} package manager (apt-get) in order for
 the component to be built.
 \item \texttt{out} This folder will be created by the \emph{build} script and will contain the
 result of the build, everything that is necessary for this component to run.
@@ -122,16 +124,29 @@ the most recent Development Milestone version.
 \section{Building}
 \label{sec:building}
 
-As seen in the Figure~\ref{fig:development-workflow}, a continuous integration will support the
+As seen in the Figure~\ref{fig:development-workflow}, continuous integration will support the
 development of the platform. That means that every service must be automatically buildable.
 As seen in Source Management (see Section~\ref{sec:source-management}), each service will be a
 folder in the source repository in order to maximize freedom in the management of development
 activities (tools used, subdirectories, etc.). To simplify the overall build, each folder must
-contain a standardized script for building the component in that folder how that script manages
+contain a standardized script for building the component in that folder. How that script manages
 the build is an implementation detail.
 
 At the root of the repository, a global builder will parse all of the services to build them.
 If specific deployment procedures must be done, they should also appear in this build process.
+
+\subsection{Proprietary Services}
+\label{sec:proprietary-services}
+
+Some of the components in the \learnpad web platform may contain trade secrets which are
+considered impossible to check in to the public Github repository. Developers of this type of
+code will have two options. One is to include binary or otherwise generated files in the source
+repository as if they were source code. As with source code, the responsible partner will need
+to ensure the binary files are included into the overall project build. Another option is to
+develop a component which relies on a service hosted by the partner for it's internal business
+logic. Obviously these options imply elevated risk as the responsible partner's binary code
+cannot be fixed while he is on holiday and in the case of a hosted service, downtime can block
+other developers and jepardize the project timeline.
 
 \section{Testing}
 \label{sec:testing}
