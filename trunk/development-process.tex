@@ -40,9 +40,9 @@ For UI development, use of mockups is highly recommended.
 
 Since the system will be automatically installed on a live test server
 (see Section~\ref{sec:live-snapshot}), each component requiring configuration must
-contain default configuration. Passwords or other secret information in the build
-configuration may be encrypted using a secret key which is stored on the travis-ci
-continuous integration server (see Section~\ref{sec:ci-server}).
+contain default configuration. Authentication credentials and other secret information
+in the build configuration may be handled by the
+travis-ci server (see Section~\ref{sec:ci-server}) and not visible on the public Github repository.
 
 Documentation of the configuration should be done in the configuration files. If more
 documentation is necessary, there must be URLs in the configuration file which tell
@@ -138,15 +138,15 @@ If specific deployment procedures must be done, they should also appear in this 
 \subsection{Proprietary Services}
 \label{sec:proprietary-services}
 
-Some of the components in the \learnpad web platform may contain trade secrets which are
-considered impossible to check in to the public Github repository. Developers of this type of
-code will have two options. One is to include binary or otherwise generated files in the source
-repository as if they were source code. As with source code, the responsible partner will need
-to ensure the binary files are included into the overall project build. Another option is to
+Some of the components in the \learnpad web platform may contain trade secrets which partners
+are unwilling to check in to the public Github repository. Developers of this type of
+code will have two options. One is to include binary files in the source
+repository as if they were source code. As with source code, the partner will be responsible of
+its binary files. Another option is to
 develop a component which relies on a service hosted by the partner for it's internal business
 logic. Obviously these options imply elevated risk as the responsible partner's binary code
 cannot be fixed while he is on holiday and in the case of a hosted service, downtime can block
-other developers and jepardize the project timeline.
+other developers and jeopardize the project timeline.
 
 \section{Testing}
 \label{sec:testing}
